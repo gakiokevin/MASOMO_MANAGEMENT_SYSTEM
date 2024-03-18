@@ -1,111 +1,71 @@
 import App from "../App";
 import { createBrowserRouter,RouterProvider} from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 
 import Course from "./aboutCourse";
 import Add_course from "./addcourse";
 
 function Router (){
-  let courses = [{
-   id:1,
-   title:'Introduction to html',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },{
-   id:2,
-   title:'simulation modeling',
-   description:'a course that teaches students how to create model to imitate real projects before they are intialised',
-   course_outline:'1. introudction to the upcoming genious'
-  },
-  {
-   id:3,
-   title:'Tests of hypothesis',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },
-  {
-   id:4,
-   title:'Networking',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  }
-  ,{
-   id:5,
-   title:'Complex analysis',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },{
-   id:6,
-   title:'partail differential',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },{
-   id:7,
-   title:'web programming',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },{
-   id:8,
-   title:'java',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  }
-  ]
-const [path,setPath] = useState('')
-const [all_courses,showCourses] = useState([{
-   id:1,
-   title:'Introduction to html',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },{
-   id:2,
-   title:'simulation modeling',
-   description:'a course that teaches students how to create model to imitate real projects before they are intialised',
-   course_outline:'1. introudction to the upcoming genious'
-  },
-  {
-   id:3,
-   title:'Tests of hypothesis',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  },
-  {
-   id:4,
-   title:'Networking',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  }
-  ,{
-   id:5,
-   title:'Complex analysis',
-   description:'a course that teaches students how to stucture a html page',
-   course_outline:'1. introudction to the upcoming genious'
-  }
+   const [coursesInDb,showCourses] = useState([
+   ])
+   //a function that fetches all the courses in the database
+   async function getAllcourses(){
+     try{
+      const response = await fetch('http://localhost:3000/courses/')
+      
+      const availablecourses = await response.json()
+      if(response.ok){
+       showCourses(availablecourses)
+       allCourses(availablecourses)
+       
+       
+      }else{
+         console.log(response.statusText)
+      }
 
-])
+     }catch(err){
+      console.log('the error is',err)
 
-function  allCourses(){
-   setPath('courses')
-   console.log(path)
-   showCourses(()=>courses)
+     }
+     
+
+   }
+ 
+   useEffect(()=>{
+      getAllcourses()
+   },[])
+
+
+
+
+  
+
+
+
+
+
+//function that displays all courses from the database
+function  allCourses(courses){
 }
-function oneCourse(id){
-   const selectedCourse = courses.filter(c=> c.id == id)
-   setPath(selectedCourse.map((c)=>c.id))
-   showCourses(selectedCourse)
+//displays only the selected course
+function show_course_with_id(id){
+
+   // const selectedCourse = courses.filter(c=> c.id == id)
+   // setPath(selectedCourse.map((c)=>c.id))
+   // showCourses(selectedCourse)
    
 }
 
    const router = createBrowserRouter([
       {
          path:'/',
-         element:<App allCourses={allCourses} oneCourse ={oneCourse} all_courses={all_courses}/>
+         element:<App allCourses={allCourses} oneCourse ={show_course_with_id} all_courses={coursesInDb}/>
       },{
          path:'courses',
-         element: <Course  all_courses={all_courses}/>,
+         element: <Course  all_courses={coursesInDb} getAllcourses={getAllcourses}/>,
       },{
          path:'new-course',
-         element:<Add_course/>
+         element:<Add_course  getAllcourses={getAllcourses}/>
       }
    ])
    return (

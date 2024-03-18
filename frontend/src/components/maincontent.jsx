@@ -1,10 +1,12 @@
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
+
 import { Link } from 'react-router-dom'
 
 const Main = ({all_courses,oneCourse,allCourses})=>{
-    const filteredCourses =  all_courses.slice(0,2)
+   const five = all_courses.length
+    const filteredCourses = all_courses.slice(0,3)
    return (
       <div className="main">
          <Container>
@@ -13,9 +15,8 @@ const Main = ({all_courses,oneCourse,allCourses})=>{
             <h2>Courses</h2>
             <p>Your recent courses</p>
             <hr/>
-
             {filteredCourses.map((course)=>(
-               <div key={course.id} className="new_course">
+               <div key={course._id} className="new_course">
          
                <p>{course.title}</p>
                <button onClick={()=>oneCourse(course.id)} disabled>view</button>
@@ -24,12 +25,11 @@ const Main = ({all_courses,oneCourse,allCourses})=>{
             </div>
 
             ))}
-            <Link className='showAll'  onClick={()=>allCourses()} to='courses'>
-            <Button variant='primary' >Show all</Button>
-            </Link>
+            {five > 4 ?(<Link className='showAll'  onClick={()=>allCourses()} to='courses'>
+            <Button variant='primary'>Show all</Button>
+            </Link>):''}
+            
          </div>
-         
-         
          </Container>
       </div>
 
