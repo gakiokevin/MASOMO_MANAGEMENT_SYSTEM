@@ -11,7 +11,7 @@ function Router (){
    //a function that fetches all the courses in the database
    async function getAllcourses(){
      try{
-      const response = await fetch('http://localhost:3000/courses/')
+      const response = await fetch('https://apis-nloi.onrender.com/courses')
       
       const availablecourses = await response.json()
       if(response.ok){

@@ -38,9 +38,9 @@ const Course = ({ all_courses, getAllcourses }) => {
     };
 
     try {
-      //http://localhost:3000/courses/update-course
+      
       const response = await fetch(
-        "http://localhost:3000/courses/update-course",
+        "https://apis-nloi.onrender.com/courses/update-course",
         {
           method: "PUT",
           body: JSON.stringify(formData),
@@ -56,7 +56,7 @@ const Course = ({ all_courses, getAllcourses }) => {
         getAllcourses();
         setdisabled(false);
         setEdit(false)
-        
+
         setTimeout(()=>{
           setMessage('')
         },3000)
@@ -76,7 +76,7 @@ const Course = ({ all_courses, getAllcourses }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/courses/delete-course",
+        "https://apis-nloi.onrender.com/courses/delete-course",
         { method: "DELETE", 
         body: JSON.stringify(courseId),
         headers: { "Content-Type": "application/json" },

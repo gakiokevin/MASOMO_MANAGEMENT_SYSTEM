@@ -27,7 +27,7 @@ const [message,setMessage] = useState('')
   
 
    try{
-       const response = await fetch('http://localhost:3000/courses/new-course',{method:'POST',headers: {
+       const response = await fetch('https://apis-nloi.onrender.com/courses/new-course',{method:'POST',headers: {
         'Content-Type': 'application/json'
     },
         body:JSON.stringify(formData)})
