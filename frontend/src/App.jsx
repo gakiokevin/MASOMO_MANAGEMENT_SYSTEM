@@ -1,33 +1,27 @@
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Header from './components/header';
-import Sidebar from './components/sidebar';
-import Main from './components/maincontent';
 
+// import Home from './pages/home'
+// import Nav from './components/navbar'
+import Nav from './pages/Navigation'
+import Main  from './pages/Mainbar'
+import { useState } from 'react'
 import './App.css'
-function App({allCourses,all_courses,oneCourse}) {
-  
+function App() {
+ 
+  const [active,isActive] = useState('')
+  const [form,showForm] = useState(false)
   return (
-      <Container fluid style={{margin:'2px 0'}}>
-      <Row style={{height:'60px',backgroundColor:'lightgreen',padding:'20px',position:'fixed',width:'100%',top:'0',zIndex:'1'}}>
-       
-        <Col>
-      <Header/>
-        </Col>
-      </Row>
 
-      <Row style={{marginTop:'60px'}}>
-        <Col xl={2}>
-       <Sidebar allCourses={allCourses}/>
-        </Col>
-        <Col>
-        <Main all_courses={all_courses} oneCourse={oneCourse} allCourses={allCourses}/>
-        </Col>
-      </Row>
-
-      </Container>
+    <div className='container'>
+    <Nav active={active} showForm={showForm}/>
+     <Main active={active} isActive={isActive} form={form} showForm={showForm}/>
+    </div>
+   
   )
 }
 
 export default App
+
+
+
+// <Nav active={active}/>
+//       <Main active={active} isActive={isActive}/>

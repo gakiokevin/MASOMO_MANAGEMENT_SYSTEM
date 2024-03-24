@@ -9,7 +9,7 @@ const Courses =  require('../models/Course')
 //getting all courses in the database
 router.get('/',async (req,res)=>{
      try {
-        const allCourses = await Courses.find({},'title _id outline description',)
+        const allCourses = await Courses.find({},'title _id outline description',).sort({createdAt:-1})
         res.json(allCourses)
      }catch(error){
       console.error('Error finding:', error);

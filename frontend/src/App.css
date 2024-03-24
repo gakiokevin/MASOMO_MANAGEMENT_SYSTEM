@@ -1,131 +1,385 @@
+/* ===========Google fonts====== */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
+  font-family: sans-serif;
   margin:0;
   padding:0;
+  box-sizing: border-box;
 }
+:root {
 
-
+  --blue:#2a2185;
+  --white:#fff;
+  --gray:#f5f5ff55;
+  --black1:#222;
+  --black2:#999;
+}
 body {
-  background-color: lightblue;
-  color:black;
-  font-family: sans-serif;
-
-  
-}
-
-ul li {
-  margin:3px 10px;
- }
-
-
-.header .logo {
-  max-width:auto;
-  margin-bottom: 6px;
-}
-
-a {
-  text-decoration: none;
-  margin:auto 10px;
-  color:#fff;
-}
-
-.sidebar {
-  background-color: #272c33;
-  color:beige;
-  margin:2px;
-  padding: 3px;
-  min-height:500px;
-  text-align: center;
-  border-radius: 3px;
-} 
+  overflow-x: hidden;
+  min-height: 100vh;
  
-.sidebar  h3 {
 
-  margin:8px -10px;
 }
 
-ul {
-  list-style-type: none;
-}
-.sidebar ul {
-  
-  display: flex;
-  padding:4px;
-  flex-direction: column;
-  align-items: center;
-  
-} 
-.sidebar ul li {
-  margin: 20px 6px;
-}
-.sidebar ul li:last-child {
+.container {
   position: relative;
-  bottom: -100px;
+  width:100%;
+}
+/* ========navigation styling==== */
+.navigation {
+  position: fixed;
+  width:300px;
+  height:100%;
+  background: var(--blue);
+  border-left:10px solid var(--blue);
+  overflow: hidden;
+  transition:.5s;
+
+}
+.navigation.active {
+  width:80px;
+}
+.navigation ul {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+}
+.navigation ul li {
+  position: relative;
+  list-style-type: none;
+  width:100%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.navigation ul li:hover {
+  background: var(--white);
+}
+.navigation ul li:nth-child(1){
+  margin-bottom:40px;
+  pointer-events: none;
+}
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width:100%;
+  display:flex;
+  text-decoration: none;
+  color:var(--white);
+
+}
+.navigation ul li:hover a {
+  color:var(--blue);
+}
+.navigation ul li a .icon {
+ position: relative;
+  display: block;
+  min-width:60px;
+  height:60px;
+  line-height: 75px;
+  text-align:center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+.navigation ul li a .title {
+  position: relative;
+  display:block;
+  padding:0 10px;
+  height:60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+  
+}
+.navigation ul li:hover a::before {
+  content:'';
+  position: absolute;
+  top:-50px;
+  right:0;
+  width:50px;
+  height:50px;
+border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after {
+  content:'';
+  position: absolute;
+  bottom:-50px;
+  right:0;
+  width:50px;
+  height:50px;
+border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+/* ==========maincomponent styling===== */
+.main {
+  position: absolute;
+  width:calc(100% - 300px);
+  left:300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: .5s;
+}
+.main.active {
+  width:calc(100% - 80px);
+  left:80px;
+}
+
+.topbar {
+  width:100%;
+  height:60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.toggle {
+  position: relative;
+  top:0;
+  width: 60px;
+  height: 60px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+.user {
+  position: relative;
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: red;
+}
+.user img {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+}
+/* ========cards styling===== */
+
+
+
+
+.cardBox {
+  position: relative;
+  width: 100%;
+  pad: 20px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 30px;
+}
+.cardBox .card {
+  position: relative;
+  padding: 30px;
+  border-radius: 30px;
+  background: var(--white);
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+
+
+}
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color:var(--blue);
+}
+.cardBox .card .cardName {
+  color:var(--black2);
+  font-size:1.1rem;
+}
+.cardBox .card .iconBox {
+  font-size: 3.5rem;
+  color:var(--black2)
+}
+
+.cardBox .card:hover{
+  background:var(--blue);
+}
+
+.cardBox .card:hover .cardName,.cardBox .card:hover .numbers,
+.cardBox .card:hover .iconBox {
+  color:var(--white);
+}
+
+/* ===========Courses details styling ==== */
+
+
+.details {
+  position: relative;
+  width:100%;
+  padding:20px;
+  margin-top:20px;
+}
+.details .recentCourses {
+  position: relative;
+  min-height: 500px;
+  background: var(--white);
+  padding:20px;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+  border-radius: 20px;
+}
+.details .cardHeader {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color:var(--blue)
+}
+.cardHeader .btn {
+  position: relative;
+  padding:5px 10px;
+  background: var(--blue);
+  color:var(--white);
+  border-radius: 6px;
+  text-decoration: none;
+
+}
+.course-details {
+  padding:20px 10px;
+  margin:10px;
+  margin-top:20px;
+  background: lightgray;
+  display:flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  position: relative;
+}
+.course-details h4 {
+  margin: 0 0 10px 0;
+  font-size:1.2rem;
+  color:var(--black1);
+}
+.course-details p {
+  font-size:.9em;
+  color:var(--black2);
+}
+
+.course-details  span {
+  font-size: 19px;
+  position: absolute;
+  right:20px;
+  top:30%;
+  align-self: center;
+  background:red;
+  color:var(--white);
+  padding:10px;
+  border-radius: 50%;
+  height: 40px;
+  width:40px;
+  text-align: center;
+  
 }
 
 
-  
 
-
-
-/* 
-*styling for the main component
- */
- .main {
-  min-height:600px;
-  background-color: gainsboro;
-  z-index:1;
-  border-radius: 4px;
+/* ==================new course form styling=========== */
+.create {
+  max-width:400px;
+  margin:20px auto;
   padding:10px;
-  margin:4px;
-  box-shadow: 3px 3px 2px red;
-  color:#fff;
- }
+  overflow: hidden;
+}
 
- .main .courses {
+
+.create h4 {
+  margin: 20px;
+  text-align: center;
+}
+.create input,label {
+  display:block;
+}
+.create input {
+  padding:10px;
+  margin-top:10px;
+  margin-bottom: 20px;
   width:100%;
-  background-color: #fff;
-  color:grey;
-  border:2px solid silver;
-  padding:3px;
-  border-radius:6px;
-  display: flex;
-  flex-direction: column;
- }
- .courses  .showAll {
-  align-self: flex-end;
-  margin-right: 6px;
- }
+  border-radius: 4px;
+  box-sizing:border-box;
+  outline: none;
+  border: 2px solid var(--black2);
+}
+.create button {
+padding:10px;
+cursor:pointer;
+background: var(--blue);
+color:var(--white);
+border: 0;
+border-radius: 4px;
+}
 
- .courses h2,p {
-  margin:3px 5px;
 
- }
- hr {
-  width:100%;
- }
- .new_course {
-  padding:4px 6px;
-  display: flex;
-   justify-content: center;
-  flex-direction: column; 
- }
 
- .new_course p {
- 
-  margin-top: 3px;
-  font-size: 20px;
- }
- .new_course a {
-   color:#272c33;
-   align-self: flex-end;
-   justify-self: end;
- }
+
+
+/* ===============Responsive design========= */
+
+
+
+@media (max-width:991px){
+  .navigation {
+    left:-300px;
+  }
+  .navigation.active {
+    width:300px;
+    left:0;
+  }
+  .main {
+    width: 100%;
+    left:0;
+  }
   
-/* 
-*styling for the new course component
- */
- .form {
-  max-width:700px;
-  margin:70px auto;
- }
- 
+  .main.active{
+    left:300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width:480px){
+  .cardBox {
+    grid-template-columns: repeat(1,1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    width:100%;
+    left:-100%;
+    z-index: 1001;
+  }
+  .navigation.active{
+    width:100%;
+    left:0;
+  }
+  .toggle {
+    z-index: 1001;
+  }
+
+  .main.active .toggle {
+    color:var(--white);
+    position: fixed;
+    left:initial;
+   
+    
+}
+}
+
