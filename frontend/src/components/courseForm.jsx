@@ -13,7 +13,7 @@ const handleSubmit = async (e)=>{
 
    e.preventDefault()
    const course = {title,description,outline}
-   const response = await fetch('https://apis-nloi.onrender.com/courses/new-course',{
+   const response = await fetch('https://masomo-management-system.onrender.com/courses/new-course',{
       method:'POST',
       body:JSON.stringify(course),
       headers:{
@@ -23,7 +23,7 @@ const handleSubmit = async (e)=>{
    const json = await response.json()
    if(response.ok){
    
-     const res = await fetch('https://apis-nloi.onrender.com/courses/')
+     const res = await fetch('https://masomo-management-system.onrender.com/courses/')
       const JSON = await res.json()
       setMessage(json.message)
 

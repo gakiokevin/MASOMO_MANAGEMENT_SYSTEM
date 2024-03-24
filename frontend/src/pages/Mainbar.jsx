@@ -11,7 +11,7 @@ const {courses,dispatch } = useCoursesContext()
 useEffect(()=>{
  
 const fetchCourses = async ()=>{
-   const response =await fetch('https://apis-nloi.onrender.com/courses')
+   const response =await fetch('https://masomo-management-system.onrender.com/courses')
    const json = await response.json()
    if(response.ok){
      dispatch({type:'SET_COURSES',payload: json})
