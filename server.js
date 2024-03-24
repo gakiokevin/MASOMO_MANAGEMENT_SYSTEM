@@ -3,7 +3,7 @@ const express = require('express')
 const cors =  require('cors')
 const mongoose = require('mongoose')
 //all paths 
-const router = require('./apis/api')
+const router = require('./businessLogic/apis/api')
 const app = express()
 
 //setting up middlewares

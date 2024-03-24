@@ -1,5 +1,6 @@
 
 import { useCoursesContext } from '../hooks/useCourses'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const CourseDetails = ({course})=>{
    const {dispatch} = useCoursesContext()
@@ -26,7 +27,7 @@ return (
    <div className='course-details'>
       <div>
   <h4>{course.title.toUpperCase()}</h4>
-  <p>CreatedAt</p>
+  <p>{formatDistanceToNow(new Date(course.createdAt),{addSuffix:true})}</p>
 
       </div>
   <span onClick={()=>Delete(course._id)}><ion-icon name="trash-outline"></ion-icon></span>
