@@ -157,14 +157,13 @@ border-radius: 50%;
   height:40px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: red;
+  text-align:center;
+  display: flex;
+  align-items: center;
 }
-.user img {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  object-fit: cover;
+
+.user ion-icon{
+  width:100%;
 }
 /* ========cards styling===== */
 
@@ -178,6 +177,9 @@ border-radius: 50%;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-gap: 30px;
+}
+.cardBox a {
+  text-decoration: none;
 }
 .cardBox .card {
   position: relative;
@@ -324,9 +326,41 @@ border-radius: 4px;
 }
 
 
+.user-info {
+  display:flex;
+  flex-direction: column;
+  max-width:700px;
+  margin:20px auto;
+}
+.user-info h2 {
+margin-bottom: 30px;
+}
 
+.message {
+  max-width: 100%;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black2);
+  margin: 20px 12px;
+  color:var(--white);
+  border-radius: 5px;
 
+}
+.message  ion-icon {
+  font-size: 30px;
+  
+}
+.message div {
+  align-self: center;
+  padding: 50px;
+}
 
+.emptyCourse {
+  text-align: center;
+  position: relative;
+  top:100px;
+}
 /* ===============Responsive design========= */
 
 

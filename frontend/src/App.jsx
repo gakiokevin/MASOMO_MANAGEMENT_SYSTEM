@@ -1,27 +1,23 @@
-
-// import Home from './pages/home'
-// import Nav from './components/navbar'
-import Nav from './pages/Navigation'
-import Main  from './pages/Mainbar'
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import { useAuthContext } from "./hooks/useAuthContext";
+import "./App.css";
 function App() {
- 
-  const [active,isActive] = useState('')
-  const [form,showForm] = useState(false)
+  const { user } = useAuthContext();
   return (
-
-    <div className='container'>
-    <Nav active={active} showForm={showForm}/>
-     <Main active={active} isActive={isActive} form={form} showForm={showForm}/>
+    <div className="container">
+      <BrowserRouter>
+        <Routes>
+          <Route path='/*' element={user ? <Dashboard/>:<Navigate to='/login'/>}/>
+          <Route path="/login" element={user ? <Navigate to='/'/>:<Login />} />
+          <Route path="/signup" element={ user ? <Navigate to='/'/>: <Signup/> }/>
+         
+        </Routes>
+      </BrowserRouter>
     </div>
-   
-  )
+  );
 }
 
-export default App
-
-
-
-// <Nav active={active}/>
-//       <Main active={active} isActive={isActive}/>
+export default App;

@@ -1,39 +1,45 @@
 
+import { useLogout } from '../hooks/useLogOut'
 import {Link} from 'react-router-dom'
-
-
 const Nav = ({active,showForm}) => {
+
+
+  const {logout} = useLogout()
+
+  const handleClick = ()=>{
+    logout()
+  }
   return (
     <div className={`navigation ${active}`}>
 
     <ul>
       <li>
-        <a href="">
+        <Link to="">
           <span className="icon">
           <ion-icon name="school-outline"></ion-icon>
          
           </span>
           <span className="title">MasomoBora</span>
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="">
+        <Link to=''>
           <span className="icon">
           <ion-icon name="home-outline"></ion-icon>
           </span>
           <span className="title">Dashboard</span>
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="">
+        <Link to=''>
           <span className="icon">
           <ion-icon name="book-outline"></ion-icon>
           </span>
           <span className="title">Courses</span>
-        </a>
+        </Link>
       </li>
       <li>
-        <Link to="/" onClick={()=>showForm(true)}>
+        <Link to="" onClick={()=>showForm(true)}>
           <span className="icon">
             <ion-icon name="add"></ion-icon>
             </span>
@@ -41,20 +47,20 @@ const Nav = ({active,showForm}) => {
         </Link>
       </li>
       <li>
-        <a href="">
+        <Link to="/messages">
           <span className="icon">
             <ion-icon name="chatbox-outline"></ion-icon>
             </span>
           <span className="title">Messages</span>
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="">
+        <Link to="/login" onClick={handleClick}>
           <span className="icon">
           <ion-icon name="log-out-outline"></ion-icon>
           </span>
           <span className="title">Logout</span>
-        </a>
+        </Link>
       </li>
     </ul>
     </div>

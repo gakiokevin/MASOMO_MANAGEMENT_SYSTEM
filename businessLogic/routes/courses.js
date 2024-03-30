@@ -1,15 +1,17 @@
 const express = require('express')
 const mongoose = require("mongoose")
 const router = express.Router()
-const Courses =  require('../models/Course')
-
-
-
+const Courses =  require('../models/CourseModel')
+const requireAuth = require('../middleware/require-auth')
 
 //getting all courses in the database
+router.use(requireAuth)
 router.get('/',async (req,res)=>{
+  
+ 
      try {
-        const allCourses = await Courses.find({},'title _id outline description createdAt',).sort({createdAt:-1})
+        const userId = req.user._id
+        const allCourses = await Courses.find({user_id:userId},'title _id outline description createdAt',).sort({createdAt:-1})
         res.json(allCourses)
      }catch(error){
       console.error('Error finding:', error);
@@ -18,27 +20,24 @@ router.get('/',async (req,res)=>{
 })
 
 router.post('/new-course',async (req,res)=>{
-  const {title,outline,description} = req.body
 
-  
+   
+  const {title,outline,description} = req.body
+  const user_id = req.user._id
+
   try {
      const newCourse = new Courses({
-       title,outline,description
+       title,outline,description,user_id
      })
     const course = await newCourse.save()
 
     return res.status(201).json({message:'Course successfully created.View it on the allcourses section'})
-   
-
 
   }catch(error){
    console.error('Error creating course:', error);
    return res.status(500).json({ error: 'Internal Server Error' });
   }
-   
-
-
-   
+      
 })
 router.put('/update-course',async (req,res)=>{
     let id = req.body.id

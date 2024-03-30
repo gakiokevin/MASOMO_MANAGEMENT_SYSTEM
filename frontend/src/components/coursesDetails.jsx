@@ -1,15 +1,19 @@
 
 import { useCoursesContext } from '../hooks/useCourses'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import {useAuthContext} from '../hooks/useAuthContext'
 
 const CourseDetails = ({course})=>{
+   const {user} = useAuthContext()
    const {dispatch} = useCoursesContext()
 
 const Delete = async (id)=>{
 
   
-   const response =  await fetch('https://masomo-management-system.onrender.com/delete-course',{method:'DELETE',body:JSON.stringify({id:id}),headers:{
-      'Content-Type':'application/json'
+   const response =  await fetch('http://localhost:3000/courses/delete-course',{method:'DELETE',body:JSON.stringify({id:id}),headers:{
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${user.token}`
+
    }})
 
    const deletedResponse = await response.json()
