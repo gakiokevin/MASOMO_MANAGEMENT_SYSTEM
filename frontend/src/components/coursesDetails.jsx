@@ -10,7 +10,7 @@ const CourseDetails = ({course})=>{
 const Delete = async (id)=>{
 
   
-   const response =  await fetch('http://localhost:3000/courses/delete-course',{method:'DELETE',body:JSON.stringify({id:id}),headers:{
+   const response =  await fetch('https://masomo-management-system.onrender.com/courses/delete-course',{method:'DELETE',body:JSON.stringify({id:id}),headers:{
       'Content-Type':'application/json',
       'Authorization':`Bearer ${user.token}`
 
