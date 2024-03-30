@@ -3,8 +3,8 @@ const express = require('express')
 const cors =  require('cors')
 const mongoose = require('mongoose')
 //all paths 
-const courseRoutes = require('./routes/courses')
-const  userRoutes = require('./routes/user')
+const courseRoutes = require('./businessLogic/routes/courses')
+const  userRoutes = require('./businessLogic/routes/user')
 
 const app = express()
 
