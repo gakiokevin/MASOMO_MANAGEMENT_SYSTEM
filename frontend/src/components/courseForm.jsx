@@ -15,7 +15,7 @@ const CourseForm = ({ showForm }) => {
     e.preventDefault();
     const course = { title, description, outline };
     const response = await fetch(
-      "https://masomo-management-system.onrender.com/courses/new-course",
+      "http://localhost:3000/courses/new-course",
       {
         method: "POST",
         body: JSON.stringify(course),
@@ -28,7 +28,7 @@ const CourseForm = ({ showForm }) => {
     const json = await response.json();
     if (response.ok) {
       const res = await fetch(
-        "https://masomo-management-system.onrender.com/courses/",
+        "http://localhost:3000/courses/",
         {
           headers: {
             'Authorization': `Bearer ${user.token}`,

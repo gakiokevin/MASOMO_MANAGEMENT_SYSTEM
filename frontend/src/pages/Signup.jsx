@@ -2,14 +2,14 @@ import {useState} from 'react'
 import './login.css'
 import {useSignup} from '../hooks/userSignUp'
 
-const Signup = ()=>{
+const Signup = ({setStatus})=>{
    const {signup, error, loading} =  useSignup()
    const [email,setEmail] = useState('')
    const [password,setPassword] = useState('')
 
    const handleSubmit = async (e)=>{
       e.preventDefault()
-       await signup(email,password)
+       await signup(email,password,setStatus)
    }
 return (
    <div className="wrapper">

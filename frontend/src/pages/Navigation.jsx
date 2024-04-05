@@ -1,13 +1,13 @@
 
 import { useLogout } from '../hooks/useLogOut'
 import {Link} from 'react-router-dom'
-const Nav = ({active,showForm}) => {
+const Nav = ({active,showForm,setStatus}) => {
 
 
   const {logout} = useLogout()
 
   const handleClick = ()=>{
-    logout()
+    logout(setStatus)
   }
   return (
     <div className={`navigation ${active}`}>
@@ -31,7 +31,7 @@ const Nav = ({active,showForm}) => {
         </Link>
       </li>
       <li>
-        <Link to=''>
+        <Link to='/dashboard/courses'>
           <span className="icon">
           <ion-icon name="book-outline"></ion-icon>
           </span>
@@ -47,7 +47,7 @@ const Nav = ({active,showForm}) => {
         </Link>
       </li>
       <li>
-        <Link to="/messages">
+        <Link to="/dashboard/messages">
           <span className="icon">
             <ion-icon name="chatbox-outline"></ion-icon>
             </span>

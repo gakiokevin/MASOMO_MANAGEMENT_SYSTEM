@@ -22,7 +22,7 @@ body {
 
 }
 
-.container {
+.Container {
   position: relative;
   width:100%;
 }
@@ -35,10 +35,9 @@ body {
   border-left:10px solid var(--blue);
   overflow: hidden;
   transition:.5s;
-
 }
 .navigation.active {
-  width:80px;
+  width:110px;
 }
 .navigation ul {
   position: absolute;
@@ -125,10 +124,11 @@ border-radius: 50%;
   min-height: 100vh;
   background: var(--white);
   transition: .5s;
+  padding-left: 20px;
 }
 .main.active {
-  width:calc(100% - 80px);
-  left:80px;
+  width:calc(100% - 110px);
+  left:110px;
 }
 
 .topbar {
@@ -181,7 +181,7 @@ border-radius: 50%;
 .cardBox a {
   text-decoration: none;
 }
-.cardBox .card {
+.cardBox .Card {
   position: relative;
   padding: 30px;
   border-radius: 30px;
@@ -192,27 +192,27 @@ border-radius: 50%;
 
 
 }
-.cardBox .card .numbers {
+.cardBox .Card .numbers {
   position: relative;
   font-weight: 500;
   font-size: 2.5rem;
   color:var(--blue);
 }
-.cardBox .card .cardName {
+.cardBox .Card .cardName {
   color:var(--black2);
   font-size:1.1rem;
 }
-.cardBox .card .iconBox {
+.cardBox .Card .iconBox {
   font-size: 3.5rem;
   color:var(--black2)
 }
 
-.cardBox .card:hover{
+.cardBox .Card:hover{
   background:var(--blue);
 }
 
-.cardBox .card:hover .cardName,.cardBox .card:hover .numbers,
-.cardBox .card:hover .iconBox {
+.cardBox .Card:hover .cardName,.cardBox .Card:hover .numbers,
+.cardBox .Card:hover .iconBox {
   color:var(--white);
 }
 
@@ -227,7 +227,7 @@ border-radius: 50%;
 }
 .details .recentCourses {
   position: relative;
-  min-height: 500px;
+  min-height: 200px;
   background: var(--white);
   padding:20px;
   box-shadow: 0 7px 25px rgba(0,0,0,0.08);
@@ -416,4 +416,5 @@ margin-bottom: 30px;
     
 }
 }
+
 

@@ -4,16 +4,23 @@ import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useLogin} from '../hooks/useLogin'
 
-const Login = ()=>{
-   
+
+const Login = ({setStatus})=>{
    const [email,setEmail] = useState('')
    const [password,setPassword] = useState('')
-   
    const {login,error,isLoading} =  useLogin()
-   
+
 const handleSubmit = async (e)=>{
    e.preventDefault()
-   await login(email,password)
+
+  const user = await JSON.parse(localStorage.getItem("user"))
+  if(user && Date.now() < user.expiration){
+   setStatus(true)
+   return;
+  }else{
+   await login(email,password,setStatus)
+  }
+  
 
 }
 
@@ -35,7 +42,7 @@ return (
       <ion-icon name="lock-closed"></ion-icon>
       </div>
       <button type="submit" className="btun" disabled={isLoading}>Login</button>
-      <div className="register"><p>Don&apos;t have an account?<Link to="/signup">Register</Link></p></div>
+      <div className="register"><p>Don&apos;t have an account?<Link to="/sign-in">Register</Link></p></div>
       {error && <div className='error'>{error}</div>}
    </form>
    </div>

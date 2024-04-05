@@ -1,6 +1,6 @@
 .wrapper {
    margin:60px auto;
-   width:420px;
+   max-width:90%;
    background: purple;
    color:#fff;
    position: relative;
@@ -71,4 +71,11 @@ margin:20px 0 15px;
    padding:10px;
    border:1px solid red;
    text-align: center;
+}
+
+@media (min-width:800px){
+
+   .wrapper {
+      width:420px;
+   }
 }

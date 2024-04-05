@@ -4,17 +4,21 @@ const jwt  = require('jsonwebtoken')
 
 
 const genToken = (_id)=>{
-
-   return jwt.sign({_id},process.env.SECRET,{expiresIn:'3d'})
+    const  expiresIn = 3 * 24 * 60 * 60
+    const expirationTime = Date.now() + expiresIn*1000
+    const token = jwt.sign({_id},process.env.SECRET,{expiresIn})
+   return {
+      token,expiration:expirationTime
+   }
 }
 
 const loginUser = async (req,res)=>{
     const {email,password} = req.body
     try{
       const user = await User.login(email,password)
-      const token =  genToken(user._id)
+      const {token,expiration} =  genToken(user._id)
  
-      return res.status(200).json({email,token})
+      return res.status(200).json({email,token,expiration})
  
  
  
@@ -31,9 +35,9 @@ const signupUser = async (req,res)=>{
 
    try{
      const user = await User.signup(email,password)
-     const token =  genToken(user._id)
+     const {token,expiration} =  genToken(user._id)
 
-     return res.status(200).json({email,token})
+     return res.status(200).json({email,token,expiration})
 
 
 
