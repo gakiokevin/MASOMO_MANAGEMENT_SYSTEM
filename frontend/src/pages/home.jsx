@@ -15,7 +15,7 @@ const Home = ({form,showForm,Toggle})=>{
    useEffect(()=>{
     
    const fetchCourses = async ()=>{
-      const response = await fetch('http://localhost:3000/courses/',{
+      const response = await fetch('https://masomo-management-system.onrender.com/courses/',{
          headers:{
             'Authorization':`Bearer ${user.token}`
          }
