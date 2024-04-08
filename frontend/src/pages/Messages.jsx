@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 const Message = ()=>{
    return (
-      <div className="container mt-4 ">
+      <div className="container mt-4">
             <div className="row justify-content-center">
                 <div className="col-md-6 col-lg-8 col-md-10 col-12">
                     <div className="card border-0 bg-light">

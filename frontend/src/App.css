@@ -99,7 +99,7 @@ body {
   right:0;
   width:50px;
   height:50px;
-border-radius: 50%;
+  border-radius: 50%;
   background-color: transparent;
   box-shadow: 35px 35px 0 10px var(--white);
   pointer-events: none;
@@ -139,6 +139,9 @@ border-radius: 50%;
   align-items: center;
   padding: 0 10px;
 }
+.topbar a {
+  text-decoration: none;
+}
 .toggle {
   position: relative;
   top:0;
@@ -162,6 +165,8 @@ border-radius: 50%;
   align-items: center;
 }
 
+
+
 .user ion-icon{
   width:100%;
 }
@@ -172,11 +177,12 @@ border-radius: 50%;
 
 .cardBox {
   position: relative;
-  width: 100%;
+  width: 95%;
   pad: 20px;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-gap: 30px;
+  box-sizing: border-box;
 }
 .cardBox a {
   text-decoration: none;
@@ -365,24 +371,40 @@ margin-bottom: 30px;
 
 
 
-@media (max-width:991px){
+@media  screen and (max-width:991px){
+  .Container {
+    margin:0;
+  }
   .navigation {
-    left:-300px;
+    left:-80px;
   }
   .navigation.active {
-    width:300px;
+    width:120px;
     left:0;
+  }
+  .navigation ul li {
+    left:-30px;
   }
   .main {
     width: 100%;
     left:0;
+
+   
   }
   
   .main.active{
-    left:300px;
+    left:80px;
+    margin-right: 7px;
+    width: 92%;
   }
   .cardBox {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(1,1fr);
+  }
+  .Card {
+    justify-content: center;
+  }
+  .main.active .user {
+    margin-right: 10px;
   }
 }
 @media (max-width:480px){
@@ -411,8 +433,7 @@ margin-bottom: 30px;
   .main.active .toggle {
     color:var(--white);
     position: fixed;
-    left:initial;
-   
+   right:50px;
     
 }
 }
